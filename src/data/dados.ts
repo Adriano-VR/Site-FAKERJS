@@ -2,7 +2,7 @@ import {faker} from "@faker-js/faker"
 
 
 
-export const products = Array.from({length:5}).map(() => {
+export const products = Array.from({length:11}).map(() => {
    const firstName = faker.person.firstName()
    const lastName=faker.person.lastName()
 
