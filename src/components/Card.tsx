@@ -8,17 +8,25 @@ import { Icon } from '@iconify-icon/react';
 export const Card = () => {
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [page,setPage] = useState(1);
+    const [loadedItems, setLoadedItems] = useState(5);
+
 
     const avancar = () => {
       setPage(page + 1);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // window.scrollTo({ top: 0, behavior: 'smooth' });
 
     }
 
     const voltar = () => {
       setPage(page - 1);
-      window.scrollTo({ top: 0, behavior: 'instant' });
+      // window.scrollTo({ top: 0, behavior: 'instant' });
     }
+
+    const loadMore = () => {
+      setLoadedItems(prevItems => prevItems + 5); // Load more items
+      
+  }
+
 
 
     useEffect(() => {
@@ -47,13 +55,15 @@ export const Card = () => {
     }, []);
 
     const totalPages = Math.ceil(products.length / 5);
+    const renderedProducts = products.slice(0, loadedItems);
 
 
     return (
         <div className="flex flex-col items-center py-5 min-h-screen justify-center">
             {imagesLoaded ? (
               <div>
-                {products.slice((page - 1) * 5, page * 5).map((product) => (
+               
+               {renderedProducts.map((product) => (
                     <div key={product.id} className="flex flex-col border border-dark-200/30 mb-10 rounded">
                         <Avatar_Username avatar={product.avatar} fullName={product.fullName} />
                         <Texto_Foto text={product.text} image={product.image} />
@@ -70,6 +80,7 @@ export const Card = () => {
                 onClick={avancar}>
                   <Icon icon="gg:arrow-right-r"  style={{fontSize:'30px'}} />
                   </button>
+                  <button onClick={loadMore}>Carregar</button>
 
                   </div>
                 </div>
