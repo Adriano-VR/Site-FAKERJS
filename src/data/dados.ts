@@ -2,7 +2,7 @@ import {faker} from "@faker-js/faker"
 
 
 
-export const products = Array.from({length:11}).map(() => {
+export const products = Array.from({length:10}).map(() => {
    const firstName = faker.person.firstName()
    const lastName=faker.person.lastName()
 
@@ -17,7 +17,7 @@ export const products = Array.from({length:11}).map(() => {
     lastName:lastName,
     avatar:faker.image.avatar(),
     username:faker.internet.userName({firstName:firstName,lastName:lastName}),
-    text:faker.hacker.phrase(),
+    text:faker.lorem.text(),
     image:faker.image.urlLoremFlickr({category:randomCategory,width:900,height:600}) // 'https://loremflickr.com/128/480?lock=1234'
 
    }
